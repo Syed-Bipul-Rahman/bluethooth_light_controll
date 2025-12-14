@@ -297,21 +297,67 @@ class BleService extends ChangeNotifier {
     return sendData(DeviceCommands.poll);
   }
 
-  /// Send turn on command
+  /// Send turn on command (fan only - legacy)
   Future<bool> sendTurnOn() async {
-    _log('Sending: Turn ON');
-    return sendData(DeviceCommands.turnOn);
+    _log('Sending: Turn ON (fan)');
+    return sendData(DeviceCommands.fanOn);
   }
 
-  /// Send turn off command
+  /// Send turn off command (fan only - legacy)
   Future<bool> sendTurnOff() async {
-    _log('Sending: Turn OFF');
-    return sendData(DeviceCommands.turnOff);
+    _log('Sending: Turn OFF (fan)');
+    return sendData(DeviceCommands.fanOff);
   }
 
-  /// Send speed control
+  /// Send FAN on
+  Future<bool> sendFanOn() async {
+    _log('Sending: FAN ON');
+    return sendData(DeviceCommands.fanOn);
+  }
+
+  /// Send FAN off
+  Future<bool> sendFanOff() async {
+    _log('Sending: FAN OFF');
+    return sendData(DeviceCommands.fanOff);
+  }
+
+  /// Send LIGHT on
+  Future<bool> sendLightOn() async {
+    _log('Sending: LIGHT ON');
+    return sendData(DeviceCommands.lightOn);
+  }
+
+  /// Send LIGHT off
+  Future<bool> sendLightOff() async {
+    _log('Sending: LIGHT OFF');
+    return sendData(DeviceCommands.lightOff);
+  }
+
+  /// Send light brightness
+  Future<bool> sendLightBrightness(int level) async {
+    _log('Sending: Light brightness $level');
+    return sendData(DeviceCommands.lightBrightness(level));
+  }
+
+  /// Send BOTH fan and light on
+  Future<bool> sendAllOn() async {
+    _log('Sending: ALL ON (fan + light)');
+    await sendData(DeviceCommands.fanOn);
+    await Future.delayed(const Duration(milliseconds: 100));
+    return sendData(DeviceCommands.lightOn);
+  }
+
+  /// Send BOTH fan and light off
+  Future<bool> sendAllOff() async {
+    _log('Sending: ALL OFF');
+    await sendData(DeviceCommands.fanOff);
+    await Future.delayed(const Duration(milliseconds: 100));
+    return sendData(DeviceCommands.lightOff);
+  }
+
+  /// Send speed control (fan speed)
   Future<bool> sendSpeed(int percent) async {
-    _log('Sending: Speed $percent%');
+    _log('Sending: Fan Speed $percent%');
     return sendData(DeviceCommands.customSpeed(percent));
   }
 

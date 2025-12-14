@@ -13,7 +13,9 @@ class ControlScreen extends StatefulWidget {
 
 class _ControlScreenState extends State<ControlScreen> {
   double _speedValue = 50;
-  bool _isOn = false;
+  double _brightnessValue = 50;
+  bool _fanOn = false;
+  bool _lightOn = false;
   final TextEditingController _rawCommandController = TextEditingController();
 
   @override
@@ -133,37 +135,105 @@ class _ControlScreenState extends State<ControlScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
+            // ALL ON/OFF buttons
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: () async {
-                      await bleService.sendTurnOn();
-                      setState(() => _isOn = true);
+                      await bleService.sendAllOn();
+                      setState(() {
+                        _fanOn = true;
+                        _lightOn = true;
+                      });
                     },
                     icon: const Icon(Icons.power),
-                    label: const Text('ON'),
+                    label: const Text('ALL ON'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: _isOn ? Colors.green : null,
-                      padding: const EdgeInsets.all(16),
+                      backgroundColor: (_fanOn && _lightOn) ? Colors.green : null,
+                      padding: const EdgeInsets.all(12),
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: () async {
-                      await bleService.sendTurnOff();
-                      setState(() => _isOn = false);
+                      await bleService.sendAllOff();
+                      setState(() {
+                        _fanOn = false;
+                        _lightOn = false;
+                      });
                     },
                     icon: const Icon(Icons.power_off),
-                    label: const Text('OFF'),
+                    label: const Text('ALL OFF'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: !_isOn ? Colors.red.shade700 : null,
-                      padding: const EdgeInsets.all(16),
+                      backgroundColor: (!_fanOn && !_lightOn) ? Colors.red.shade700 : null,
+                      padding: const EdgeInsets.all(12),
                     ),
                   ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // FAN controls
+            Row(
+              children: [
+                const Icon(Icons.air, size: 24),
+                const SizedBox(width: 8),
+                const Text('Fan:', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () async {
+                    await bleService.sendFanOn();
+                    setState(() => _fanOn = true);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _fanOn ? Colors.green : null,
+                  ),
+                  child: const Text('ON'),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    await bleService.sendFanOff();
+                    setState(() => _fanOn = false);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: !_fanOn ? Colors.red.shade700 : null,
+                  ),
+                  child: const Text('OFF'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            // LIGHT controls
+            Row(
+              children: [
+                const Icon(Icons.lightbulb, size: 24),
+                const SizedBox(width: 8),
+                const Text('Light:', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () async {
+                    await bleService.sendLightOn();
+                    setState(() => _lightOn = true);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _lightOn ? Colors.amber : null,
+                  ),
+                  child: const Text('ON'),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    await bleService.sendLightOff();
+                    setState(() => _lightOn = false);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: !_lightOn ? Colors.grey.shade700 : null,
+                  ),
+                  child: const Text('OFF'),
                 ),
               ],
             ),
@@ -180,18 +250,18 @@ class _ControlScreenState extends State<ControlScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Fan Speed
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const Icon(Icons.air, size: 20),
+                const SizedBox(width: 8),
                 const Text(
-                  'Speed Control',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  'Fan Speed',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
+                const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(16),
@@ -203,7 +273,6 @@ class _ControlScreenState extends State<ControlScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
             Slider(
               value: _speedValue,
               min: 0,
@@ -217,7 +286,6 @@ class _ControlScreenState extends State<ControlScreen> {
                 bleService.sendSpeed(value.round());
               },
             ),
-            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -227,9 +295,76 @@ class _ControlScreenState extends State<ControlScreen> {
                 _buildSpeedButton(bleService, 'Max', 100),
               ],
             ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+            // Light Brightness
+            Row(
+              children: [
+                const Icon(Icons.lightbulb, size: 20, color: Colors.amber),
+                const SizedBox(width: 8),
+                const Text(
+                  'Light Brightness',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    '${_brightnessValue.round()}%',
+                    style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            Slider(
+              value: _brightnessValue,
+              min: 0,
+              max: 100,
+              divisions: 20,
+              activeColor: Colors.amber,
+              label: '${_brightnessValue.round()}%',
+              onChanged: (value) {
+                setState(() => _brightnessValue = value);
+              },
+              onChangeEnd: (value) {
+                // Map 0-100 to brightness levels (0x01 to 0x20 based on log)
+                int level = (value * 0x20 ~/ 100).clamp(1, 0x20);
+                bleService.sendLightBrightness(level);
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildBrightnessButton(bleService, 'Dim', 25),
+                _buildBrightnessButton(bleService, 'Med', 50),
+                _buildBrightnessButton(bleService, 'Bright', 75),
+                _buildBrightnessButton(bleService, 'Max', 100),
+              ],
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBrightnessButton(BleService bleService, String label, int brightness) {
+    final isActive = _brightnessValue.round() == brightness;
+    return ElevatedButton(
+      onPressed: () {
+        setState(() => _brightnessValue = brightness.toDouble());
+        int level = (brightness * 0x20 ~/ 100).clamp(1, 0x20);
+        bleService.sendLightBrightness(level);
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: isActive ? Colors.amber : null,
+        foregroundColor: isActive ? Colors.black : null,
+      ),
+      child: Text(label),
     );
   }
 

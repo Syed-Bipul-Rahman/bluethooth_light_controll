@@ -2,1561 +2,1634 @@
 BTSNOOP HCI LOG PARSER RESULTS
 ======================================================================
 
-Total packets parsed: 19590
-Capture period: 2026-12-27 14:00:20.057867 to 2026-12-27 14:06:13.149271
-Duration: 0:05:53.091404
+Total packets parsed: 28492
+Capture period: 2026-12-27 15:31:19.011774 to 2026-12-27 15:38:42.795082
+Duration: 0:07:23.783308
 
 ======================================================================
-CONNECTION REQUESTS (4)
+CONNECTION REQUESTS (5)
 ======================================================================
-  [2026-12-27 14:01:32.909343] RECEIVED
+  [2026-12-27 15:32:24.263350] RECEIVED
     BD_ADDR: 00:00:00:00:00:00
     Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=2, handle=0x0000)
 
-  [2026-12-27 14:02:42.513850] RECEIVED
+  [2026-12-27 15:34:29.834054] RECEIVED
     BD_ADDR: 00:00:00:00:00:00
     Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=2, handle=0x0000)
 
-  [2026-12-27 14:03:52.116411] RECEIVED
-    BD_ADDR: 00:00:00:00:00:00
-    Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=2, handle=0x0000)
-
-  [2026-12-27 14:03:52.238398] RECEIVED
+  [2026-12-27 15:34:30.048362] RECEIVED
     BD_ADDR: 62:FA:DB:F9:85:E9
-    Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=0, handle=0x00B6)
+    Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=0, handle=0x0111)
+
+  [2026-12-27 15:34:41.076993] RECEIVED
+    BD_ADDR: 00:00:00:00:00:00
+    Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=2, handle=0x0000)
+
+  [2026-12-27 15:34:41.356925] RECEIVED
+    BD_ADDR: 62:FA:DB:F9:85:E9
+    Type: LE Enhanced (Master, Public) | Event: le_enhanced_connection_complete (status=0, handle=0x0117)
 
 ======================================================================
-DISCONNECTION EVENTS (2)
+DISCONNECTION EVENTS (3)
 ======================================================================
-  [2026-12-27 14:02:43.819791]
-    Handle: 0x009D
+  [2026-12-27 15:32:25.802393]
+    Handle: 0x00F8
     Reason: Disconnect Command: Remote User Terminated Connection
 
-  [2026-12-27 14:02:43.866704]
-    Handle: 0x009D
-    Reason: Connection Terminated by Local Host
+  [2026-12-27 15:32:31.792182]
+    Handle: 0x00F8
+    Reason: Connection Timeout
+
+  [2026-12-27 15:34:30.229644]
+    Handle: 0x0111
+    Reason: Connection Failed to be Established
 
 ======================================================================
 ADVERTISEMENT PACKETS (0)
 ======================================================================
 ======================================================================
-GATT OPERATIONS (311)
+GATT OPERATIONS (324)
 ======================================================================
-  [2026-12-27 14:00:20.556834] SENT
+  [2026-12-27 15:31:19.633328] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:21.562922] SENT
+  [2026-12-27 15:31:20.632188] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:22.563522] SENT
+  [2026-12-27 15:31:21.635252] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:23.560415] SENT
+  [2026-12-27 15:31:22.633110] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:24.554467] SENT
+  [2026-12-27 15:31:23.632616] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:25.562825] SENT
+  [2026-12-27 15:31:24.633423] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:26.556359] SENT
+  [2026-12-27 15:31:25.633093] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:27.560781] SENT
+  [2026-12-27 15:31:26.632625] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:28.562784] SENT
+  [2026-12-27 15:31:27.632016] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:29.562726] SENT
+  [2026-12-27 15:31:28.635986] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:30.555408] SENT
+  [2026-12-27 15:31:29.634637] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:31.561146] SENT
+  [2026-12-27 15:31:30.632058] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:32.562097] SENT
+  [2026-12-27 15:31:31.632682] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:33.560341] SENT
+  [2026-12-27 15:31:32.633214] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:34.556447] SENT
+  [2026-12-27 15:31:33.632815] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:35.562036] SENT
+  [2026-12-27 15:31:34.632267] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:36.563964] SENT
+  [2026-12-27 15:31:35.633629] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:37.557705] SENT
+  [2026-12-27 15:31:36.688400] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:38.557136] SENT
+  [2026-12-27 15:31:36.694100] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:39.561180] SENT
+  [2026-12-27 15:31:37.633407] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:40.561554] SENT
+  [2026-12-27 15:31:38.632161] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:41.556209] SENT
+  [2026-12-27 15:31:39.634033] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:42.562662] SENT
+  [2026-12-27 15:31:40.632648] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:43.562496] SENT
+  [2026-12-27 15:31:41.633534] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:44.560838] SENT
+  [2026-12-27 15:31:42.633705] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:45.556838] SENT
+  [2026-12-27 15:31:43.633266] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:46.557212] SENT
+  [2026-12-27 15:31:44.633374] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:47.561915] SENT
+  [2026-12-27 15:31:45.631845] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:48.562192] SENT
+  [2026-12-27 15:31:46.633084] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:49.563519] SENT
+  [2026-12-27 15:31:47.634062] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:50.563339] SENT
+  [2026-12-27 15:31:48.634931] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:51.559120] SENT
+  [2026-12-27 15:31:49.634409] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:52.562431] SENT
+  [2026-12-27 15:31:50.632970] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:53.562487] SENT
+  [2026-12-27 15:31:51.632692] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:54.557174] SENT
+  [2026-12-27 15:31:52.632462] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:55.560196] SENT
+  [2026-12-27 15:31:53.633588] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:56.562426] SENT
+  [2026-12-27 15:31:54.630346] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:57.562595] SENT
+  [2026-12-27 15:31:55.633709] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:58.228884] SENT
+  [2026-12-27 15:31:56.634155] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:58.555854] SENT
+  [2026-12-27 15:31:57.631778] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:00:59.560305] SENT
+  [2026-12-27 15:31:58.633119] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:00.555796] SENT
+  [2026-12-27 15:31:59.630253] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:01.554965] SENT
+  [2026-12-27 15:32:00.632010] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:02.556383] SENT
+  [2026-12-27 15:32:01.631535] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:03.562136] SENT
+  [2026-12-27 15:32:02.634539] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:04.562934] SENT
+  [2026-12-27 15:32:03.635772] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:05.559370] SENT
+  [2026-12-27 15:32:04.637676] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:06.556688] SENT
+  [2026-12-27 15:32:05.633224] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:07.555605] SENT
+  [2026-12-27 15:32:06.632775] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:08.556047] SENT
+  [2026-12-27 15:32:07.636203] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:09.556146] SENT
+  [2026-12-27 15:32:08.630764] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:10.562233] SENT
+  [2026-12-27 15:32:09.633613] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:11.562380] SENT
+  [2026-12-27 15:32:10.635398] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:12.559277] SENT
+  [2026-12-27 15:32:11.631366] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:13.558269] SENT
+  [2026-12-27 15:32:12.632102] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:14.559003] SENT
+  [2026-12-27 15:32:13.630308] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:15.556142] SENT
+  [2026-12-27 15:32:14.296328] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:16.555848] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:17.563067] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:18.562500] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:19.558434] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:20.556730] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:21.555957] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:22.558635] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:23.555679] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:24.562070] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:25.562887] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:26.562068] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:27.562136] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:28.555164] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:29.556294] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:30.562101] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:31.559618] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:32.561826] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:33.557116] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:34.561529] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:35.556795] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:36.556093] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:37.557297] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:38.560940] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:39.562267] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:40.558693] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:41.556416] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:42.556049] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:43.560343] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:44.557408] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:45.562243] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:46.563470] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:47.557344] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:48.557904] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:49.556057] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:50.560847] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:51.557564] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:52.562476] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:53.563827] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:54.557266] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:55.560107] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:01:56.555950] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
+    Data: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
 
-  [2026-12-27 14:01:57.556380] SENT
+  [2026-12-27 15:32:17.304913] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:58.222746] SENT
+  [2026-12-27 15:32:18.304361] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:58.556777] SENT
+  [2026-12-27 15:32:19.303721] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:01:59.562060] SENT
+  [2026-12-27 15:32:20.304938] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:02:00.563813] SENT
+  [2026-12-27 15:32:21.304153] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:02:01.557115] SENT
+  [2026-12-27 15:32:21.468580] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:02.556455] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:03.555778] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:04.561249] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:05.562169] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:06.562488] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:07.560138] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:08.559475] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:09.555521] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:10.555401] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:11.560377] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:12.557575] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:13.562900] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:14.563203] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:15.559043] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:16.559418] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:17.559262] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:18.558212] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:19.560170] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:20.563600] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:21.562084] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:22.558149] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:23.557403] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:24.560865] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:25.563378] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:26.560989] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:27.559319] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:28.562737] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:29.558002] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:30.558815] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:31.561696] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:32.557422] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:33.556777] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:34.559189] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:35.562090] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:36.556603] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:37.554232] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:38.562889] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:39.558112] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:40.558033] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:41.554279] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
-
-  [2026-12-27 14:02:42.668752] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a20262fa26020d0a
+    Data: 20003a26a30d62fa0000ff32800cffffffff08f3070d0a
 
-  [2026-12-27 14:03:52.273075] SENT
+  [2026-12-27 15:34:41.424515] SENT
     Operation: Read By Type Request
     Data: 0100ffff012a
 
-  [2026-12-27 14:03:52.386634] RECEIVED
+  [2026-12-27 15:34:41.480600] RECEIVED
     Operation: Read By Type Response
     Data: 020500
 
-  [2026-12-27 14:03:52.387590] SENT
+  [2026-12-27 15:34:41.513294] SENT
     Operation: Read By Type Request
     Data: 0100ffff2a2b
 
-  [2026-12-27 14:03:52.447820] SENT
+  [2026-12-27 15:34:41.691941] SENT
     Operation: Read By Group Type Request
     Data: 0100ffff0028
 
-  [2026-12-27 14:03:52.507079] RECEIVED
+  [2026-12-27 15:34:41.810785] RECEIVED
     Operation: Read By Group Type Response
     Data: 060100050000180600090001180a0014000a18150018
 
-  [2026-12-27 14:03:52.509091] SENT
+  [2026-12-27 15:34:41.812314] SENT
     Operation: Read By Group Type Request
     Data: 8600ffff0028
 
-  [2026-12-27 14:03:52.600137] SENT
+  [2026-12-27 15:34:41.901912] SENT
     Operation: Read By Type Request
     Data: 010005000228
 
-  [2026-12-27 14:03:52.666626] SENT
+  [2026-12-27 15:34:41.932164] SENT
     Operation: Read By Type Request
     Data: 010005000328
 
-  [2026-12-27 14:03:52.694678] RECEIVED
+  [2026-12-27 15:34:41.953394] RECEIVED
     Operation: Read By Type Response
     Data: 070200020300002a0400020500012a
 
-  [2026-12-27 14:03:52.696849] SENT
+  [2026-12-27 15:34:41.954603] SENT
     Operation: Read By Type Request
     Data: 050005000328
 
-  [2026-12-27 14:03:52.721049] SENT
+  [2026-12-27 15:34:41.978540] SENT
     Operation: Read By Type Request
     Data: 060009000228
 
-  [2026-12-27 14:03:52.749876] SENT
+  [2026-12-27 15:34:41.998940] SENT
     Operation: Read By Type Request
     Data: 060009000328
 
-  [2026-12-27 14:03:52.762504] RECEIVED
+  [2026-12-27 15:34:42.036129] RECEIVED
     Operation: Read By Type Response
     Data: 070700200800052a
 
-  [2026-12-27 14:03:52.763878] SENT
+  [2026-12-27 15:34:42.037613] SENT
     Operation: Read By Type Request
     Data: 080009000328
 
-  [2026-12-27 14:03:52.802352] SENT
+  [2026-12-27 15:34:42.136345] SENT
     Operation: Read By Type Request
     Data: 0a0014000228
 
-  [2026-12-27 14:03:52.824461] SENT
+  [2026-12-27 15:34:42.159013] SENT
     Operation: Read By Type Request
     Data: 0a0014000328
 
-  [2026-12-27 14:03:52.838366] RECEIVED
+  [2026-12-27 15:34:42.186412] RECEIVED
     Operation: Read By Type Response
     Data: 070b00020c00242a0d00020e00262a0f00021000272a
 
-  [2026-12-27 14:03:52.842330] SENT
+  [2026-12-27 15:34:42.189946] SENT
     Operation: Read By Type Request
     Data: 140014000328
 
-  [2026-12-27 14:03:52.863931] SENT
+  [2026-12-27 15:34:42.220938] SENT
     Operation: Read By Type Request
     Data: 150018000228
 
-  [2026-12-27 14:03:52.884358] SENT
+  [2026-12-27 15:34:42.240872] SENT
     Operation: Read By Type Request
     Data: 150018000328
 
-  [2026-12-27 14:03:52.905021] RECEIVED
+  [2026-12-27 15:34:42.254013] RECEIVED
     Operation: Read By Type Response
     Data: 071600121700192a
 
-  [2026-12-27 14:03:52.907003] SENT
+  [2026-12-27 15:34:42.256130] SENT
     Operation: Read By Type Request
     Data: 170018000328
 
-  [2026-12-27 14:03:52.942955] SENT
+  [2026-12-27 15:34:42.317009] SENT
     Operation: Read By Type Request
     Data: 19001d000228
 
-  [2026-12-27 14:03:52.975310] SENT
+  [2026-12-27 15:34:42.339805] SENT
     Operation: Read By Type Request
     Data: 19001d000328
 
-  [2026-12-27 14:03:53.025196] RECEIVED
+  [2026-12-27 15:34:42.350787] RECEIVED
     Operation: Read By Type Response
     Data: 071a00101b00e4ff
 
-  [2026-12-27 14:03:53.027569] SENT
+  [2026-12-27 15:34:42.352090] SENT
     Operation: Read By Type Request
     Data: 1b001d000328
 
-  [2026-12-27 14:03:53.065196] SENT
+  [2026-12-27 15:34:42.397616] SENT
     Operation: Read By Type Request
     Data: 1e0021000228
 
-  [2026-12-27 14:03:53.086909] SENT
+  [2026-12-27 15:34:42.413527] SENT
     Operation: Read By Type Request
     Data: 1e0021000328
 
-  [2026-12-27 14:03:53.114546] RECEIVED
+  [2026-12-27 15:34:42.433860] RECEIVED
     Operation: Read By Type Response
     Data: 071f000c2000e9ff
 
-  [2026-12-27 14:03:53.116074] SENT
+  [2026-12-27 15:34:42.435532] SENT
     Operation: Read By Type Request
     Data: 200021000328
 
-  [2026-12-27 14:03:53.154226] SENT
+  [2026-12-27 15:34:42.481104] SENT
     Operation: Read By Type Request
     Data: 800085000228
 
-  [2026-12-27 14:03:53.168927] SENT
+  [2026-12-27 15:34:42.511342] SENT
     Operation: Read By Type Request
     Data: 800085000328
 
-  [2026-12-27 14:03:53.182226] RECEIVED
+  [2026-12-27 15:34:42.531406] RECEIVED
     Operation: Read By Type Response
     Data: 07810004820001ae830010840002ae
 
-  [2026-12-27 14:03:53.184583] SENT
+  [2026-12-27 15:34:42.533897] SENT
     Operation: Read By Type Request
     Data: 840085000328
 
-  [2026-12-27 14:03:53.265813] SENT
+  [2026-12-27 15:34:42.582558] SENT
     Operation: Write Request
     Handle: 0x001C
     Data: 1c000100
 
-  [2026-12-27 14:03:53.279686] RECEIVED
+  [2026-12-27 15:34:42.613437] RECEIVED
     Operation: Write Response
 
-  [2026-12-27 14:03:53.396936] SENT
+  [2026-12-27 15:34:42.724686] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:03:56.478301] SENT
+  [2026-12-27 15:34:51.209297] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a30d62fa0000ff32800cffffffff08f3070d0a
 
-  [2026-12-27 14:03:58.102906] SENT
+  [2026-12-27 15:34:52.711124] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
 
-  [2026-12-27 14:04:01.093846] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0000ff32800cffffffff08f3070d0a
-
-  [2026-12-27 14:04:02.775939] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
-
-  [2026-12-27 14:04:05.790210] SENT
+  [2026-12-27 15:34:55.721836] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:05.983655] SENT
+  [2026-12-27 15:34:56.725988] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff328c0affffffff08fe070d0a
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:08.483567] SENT
+  [2026-12-27 15:34:57.726205] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:10.281789] SENT
+  [2026-12-27 15:34:58.724245] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff32cc10ffffffff0844080d0a
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:11.297632] SENT
+  [2026-12-27 15:34:59.721250] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff35cc10ffffffff0847080d0a
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:11.612440] SENT
+  [2026-12-27 15:35:00.719108] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff0fcc10ffffffff0821080d0a
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:12.419542] SENT
+  [2026-12-27 15:35:01.436089] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff04cc10ffffffff0816080d0a
+    Data: 20003a26a30d62fa0000ff32800cffffffff08f3070d0a
 
-  [2026-12-27 14:04:12.752902] SENT
+  [2026-12-27 15:35:03.271035] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff043011ffffffff087b070d0a
+    Data: 20003a26a30d62fa00020732ffffffff640500d2060d0a
 
-  [2026-12-27 14:04:13.616061] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff041c0cffffffff0862070d0a
-
-  [2026-12-27 14:04:13.940735] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff04480dffffffff088f070d0a
-
-  [2026-12-27 14:04:14.246777] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff048813ffffffff08d5070d0a
-
-  [2026-12-27 14:04:15.056560] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff041815ffffffff0867070d0a
-
-  [2026-12-27 14:04:16.738973] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff0e1815ffffffff0871070d0a
-
-  [2026-12-27 14:04:17.095097] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff3f1815ffffffff08a2070d0a
-
-  [2026-12-27 14:04:17.625593] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff3f1815ffffffff08a2070d0a
-
-  [2026-12-27 14:04:18.448096] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff3c1815ffffffff089f070d0a
-
-  [2026-12-27 14:04:19.881285] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff641815ffffffff08c7070d0a
-
-  [2026-12-27 14:04:20.982269] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa0100ff501815ffffffff08b3070d0a
-
-  [2026-12-27 14:04:23.523911] SENT
+  [2026-12-27 15:35:04.320863] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a30d62fa01020732ffffffff640500d3060d0a
 
-  [2026-12-27 14:04:26.007966] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa01020d32ffffffffff05ff73080d0a
-
-  [2026-12-27 14:04:26.612789] SENT
-    Operation: Write Command
-    Handle: 0x0020
-    Data: 20003a26a30d62fa01020d32ffffffffff05ff73080d0a
-
-  [2026-12-27 14:04:29.829973] SENT
+  [2026-12-27 15:35:07.336612] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:29.923566] SENT
+  [2026-12-27 15:35:08.337893] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:09.339336] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:10.337065] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:11.345111] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:12.343751] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:13.342757] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:13.910805] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a30d62fa01020f328813ffffff05ff12070d0a
 
-  [2026-12-27 14:04:30.527267] SENT
+  [2026-12-27 15:35:16.566826] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a30d62fa01020f328813ffffff05ff12070d0a
 
-  [2026-12-27 14:04:31.990762] SENT
+  [2026-12-27 15:35:18.027951] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa010203328813ffffff05ff06070d0a
+    Data: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
 
-  [2026-12-27 14:04:32.594887] SENT
+  [2026-12-27 15:35:20.843860] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa010203328813ffffff05ff06070d0a
+    Data: 20003a26a30d62fa0100ff32b80bffffffff082b080d0a
 
-  [2026-12-27 14:04:35.811653] SENT
+  [2026-12-27 15:35:21.147818] SENT
     Operation: Write Command
     Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff321815ffffffff0895070d0a
+
+  [2026-12-27 15:35:21.835780] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff326419ffffffff08e5070d0a
+
+  [2026-12-27 15:35:25.050387] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:26.051058] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:26.250811] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff327017ffffffff08ef070d0a
+
+  [2026-12-27 15:35:26.548704] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff325c12ffffffff08d6070d0a
+
+  [2026-12-27 15:35:27.369943] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff32f811ffffffff0871080d0a
+
+  [2026-12-27 15:35:28.160145] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff2af811ffffffff0869080d0a
+
+  [2026-12-27 15:35:28.523729] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff13f811ffffffff0852080d0a
+
+  [2026-12-27 15:35:28.832797] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff0ef811ffffffff084d080d0a
+
+  [2026-12-27 15:35:29.143490] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff0ef811ffffffff084d080d0a
+
+  [2026-12-27 15:35:29.788625] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff0ef811ffffffff084d080d0a
+
+  [2026-12-27 15:35:31.633346] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff10f811ffffffff084f080d0a
+
+  [2026-12-27 15:35:32.427878] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff1ef811ffffffff085d080d0a
+
+  [2026-12-27 15:35:35.640179] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:36.637273] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:37.637437] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:38.643018] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:39.317539] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff1e5c12ffffffff08c2070d0a
+
+  [2026-12-27 15:35:40.075793] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff1e6419ffffffff08d1070d0a
+
+  [2026-12-27 15:35:41.348194] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff1e1815ffffffff0881070d0a
+
+  [2026-12-27 15:35:41.965611] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa0100ff1ef00affffffff084e080d0a
+
+  [2026-12-27 15:35:42.642338] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa01020f328813ffffff05ff12070d0a
+
+  [2026-12-27 15:35:42.825249] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:45.657211] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:46.657893] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:47.652043] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:48.651756] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:49.651847] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:49.731614] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa01020f32b612ffffff05ff3f070d0a
+
+  [2026-12-27 15:35:50.032790] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa01020f325a17ffffff05ffe8060d0a
+
+  [2026-12-27 15:35:50.331432] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa01020f32670cffffff05ffea060d0a
+
+  [2026-12-27 15:35:51.035110] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa01020f328c0affffff05ff0d070d0a
+
+  [2026-12-27 15:35:54.108293] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a30d62fa00020f328c0affffff05ff0c070d0a
+
+  [2026-12-27 15:35:57.121824] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:58.125621] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:35:59.122897] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:00.124302] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:01.130923] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:02.121637] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:03.125889] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:04.122268] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:05.128719] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:06.122273] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:07.123728] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:08.130300] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:09.122370] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:10.121766] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:11.125673] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:12.122528] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:13.126247] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:14.127526] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:15.129383] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:16.122472] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:17.122335] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:18.121418] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:19.126887] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:20.129344] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:21.126481] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:22.129224] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:23.125051] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:24.122556] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:25.122797] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:26.122963] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:27.126376] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:28.129330] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:29.129284] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:30.122006] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:31.124746] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:32.120998] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:33.125863] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:34.122586] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:35.129587] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:36.130828] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:37.122534] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:38.122713] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:39.126005] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:40.121773] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:41.125720] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:42.128804] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:42.832888] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:43.127831] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:44.123143] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:45.121911] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:46.122983] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:47.122497] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:48.122256] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:49.128822] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:50.127968] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:51.122098] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:52.122891] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:53.122240] SENT
+    Operation: Write Command
+    Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:36.090303] SENT
+  [2026-12-27 15:36:54.125806] SENT
     Operation: Write Command
     Handle: 0x0020
-    Data: 20003a26a30d62fa000203328813ffffff05ff05070d0a
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:55.123829] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:56.129333] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:57.128770] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:58.127711] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:36:59.122283] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:00.125742] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:01.122827] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:02.121756] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:03.124911] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:04.126404] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:05.125038] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
+
+  [2026-12-27 15:37:06.126860] SENT
+    Operation: Write Command
+    Handle: 0x0020
+    Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:39.108131] SENT
+  [2026-12-27 15:37:07.121185] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:40.102455] SENT
+  [2026-12-27 15:37:08.122351] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:41.108752] SENT
+  [2026-12-27 15:37:09.121282] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:42.101142] SENT
+  [2026-12-27 15:37:10.129137] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:43.105970] SENT
+  [2026-12-27 15:37:11.126055] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:44.106952] SENT
+  [2026-12-27 15:37:12.122869] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:45.108857] SENT
+  [2026-12-27 15:37:13.122274] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:46.107867] SENT
+  [2026-12-27 15:37:14.129828] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:47.100665] SENT
+  [2026-12-27 15:37:15.122778] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:48.101998] SENT
+  [2026-12-27 15:37:16.127311] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:49.103403] SENT
+  [2026-12-27 15:37:17.129258] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:50.101417] SENT
+  [2026-12-27 15:37:18.128768] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:51.101307] SENT
+  [2026-12-27 15:37:19.120899] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:52.105089] SENT
+  [2026-12-27 15:37:20.125397] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:53.108305] SENT
+  [2026-12-27 15:37:21.126260] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:53.499502] SENT
+  [2026-12-27 15:37:22.128206] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:54.103388] SENT
+  [2026-12-27 15:37:23.121481] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:55.101720] SENT
+  [2026-12-27 15:37:24.129886] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:56.103627] SENT
+  [2026-12-27 15:37:25.130258] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:57.106766] SENT
+  [2026-12-27 15:37:26.121523] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:58.101827] SENT
+  [2026-12-27 15:37:27.125409] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:04:59.108765] SENT
+  [2026-12-27 15:37:28.120970] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:00.102505] SENT
+  [2026-12-27 15:37:29.121991] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:01.100588] SENT
+  [2026-12-27 15:37:30.122030] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:02.101658] SENT
+  [2026-12-27 15:37:31.128952] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:03.104141] SENT
+  [2026-12-27 15:37:32.129305] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:04.102385] SENT
+  [2026-12-27 15:37:33.127268] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:05.100568] SENT
+  [2026-12-27 15:37:34.121687] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:06.108031] SENT
+  [2026-12-27 15:37:35.122210] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:07.109332] SENT
+  [2026-12-27 15:37:36.122687] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:08.100714] SENT
+  [2026-12-27 15:37:37.121736] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:09.100446] SENT
+  [2026-12-27 15:37:38.129070] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:10.101094] SENT
+  [2026-12-27 15:37:39.129324] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:11.106182] SENT
+  [2026-12-27 15:37:40.121429] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:12.101676] SENT
+  [2026-12-27 15:37:41.121675] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:13.107358] SENT
+  [2026-12-27 15:37:42.121686] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:14.107616] SENT
+  [2026-12-27 15:37:42.824952] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:15.105885] SENT
+  [2026-12-27 15:37:43.121807] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:16.104753] SENT
+  [2026-12-27 15:37:44.125741] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:17.100596] SENT
+  [2026-12-27 15:37:45.125899] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:18.105656] SENT
+  [2026-12-27 15:37:46.128848] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:19.106942] SENT
+  [2026-12-27 15:37:47.121456] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:20.108768] SENT
+  [2026-12-27 15:37:48.121934] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:21.105267] SENT
+  [2026-12-27 15:37:49.121711] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:22.105669] SENT
+  [2026-12-27 15:37:50.122737] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:23.103567] SENT
+  [2026-12-27 15:37:51.125254] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:24.101210] SENT
+  [2026-12-27 15:37:52.127725] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:25.103095] SENT
+  [2026-12-27 15:37:53.129258] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:26.104884] SENT
+  [2026-12-27 15:37:54.121260] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:27.109024] SENT
+  [2026-12-27 15:37:55.122095] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:28.108977] SENT
+  [2026-12-27 15:37:56.121752] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:29.101859] SENT
+  [2026-12-27 15:37:57.121908] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:30.101576] SENT
+  [2026-12-27 15:37:58.122195] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:31.104934] SENT
+  [2026-12-27 15:37:59.128916] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:32.101371] SENT
+  [2026-12-27 15:38:00.121328] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:33.104148] SENT
+  [2026-12-27 15:38:01.123084] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:34.110193] SENT
+  [2026-12-27 15:38:02.128927] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:35.107959] SENT
+  [2026-12-27 15:38:03.122019] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:36.105280] SENT
+  [2026-12-27 15:38:04.121821] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:37.107771] SENT
+  [2026-12-27 15:38:05.125061] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:38.103920] SENT
+  [2026-12-27 15:38:06.122149] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:39.101137] SENT
+  [2026-12-27 15:38:07.122783] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:40.104818] SENT
+  [2026-12-27 15:38:08.123613] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:41.107569] SENT
+  [2026-12-27 15:38:09.129136] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:42.110945] SENT
+  [2026-12-27 15:38:10.128037] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:43.105887] SENT
+  [2026-12-27 15:38:11.129168] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:44.099946] SENT
+  [2026-12-27 15:38:12.123045] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:45.101415] SENT
+  [2026-12-27 15:38:13.126372] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:46.107428] SENT
+  [2026-12-27 15:38:14.129878] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:47.102154] SENT
+  [2026-12-27 15:38:15.125438] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:48.105969] SENT
+  [2026-12-27 15:38:16.121018] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:49.108807] SENT
+  [2026-12-27 15:38:17.121112] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:50.103515] SENT
+  [2026-12-27 15:38:18.121133] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:51.104713] SENT
+  [2026-12-27 15:38:19.122618] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:52.101900] SENT
+  [2026-12-27 15:38:20.121564] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:53.102602] SENT
+  [2026-12-27 15:38:21.121522] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:53.495494] SENT
+  [2026-12-27 15:38:22.125144] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:54.099922] SENT
+  [2026-12-27 15:38:23.124209] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:55.100266] SENT
+  [2026-12-27 15:38:24.121248] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:56.099798] SENT
+  [2026-12-27 15:38:25.729470] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:57.103908] SENT
+  [2026-12-27 15:38:26.120686] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:58.100196] SENT
+  [2026-12-27 15:38:27.122313] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:05:59.101292] SENT
+  [2026-12-27 15:38:28.123156] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:00.100372] SENT
+  [2026-12-27 15:38:29.121999] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:01.100007] SENT
+  [2026-12-27 15:38:30.124007] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:02.100886] SENT
+  [2026-12-27 15:38:31.121574] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:03.099919] SENT
+  [2026-12-27 15:38:32.122249] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:04.101024] SENT
+  [2026-12-27 15:38:33.122505] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:05.100855] SENT
+  [2026-12-27 15:38:34.127542] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:06.101030] SENT
+  [2026-12-27 15:38:35.128947] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:07.782068] SENT
+  [2026-12-27 15:38:36.121707] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:08.099746] SENT
+  [2026-12-27 15:38:37.120461] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:09.100709] SENT
+  [2026-12-27 15:38:38.129072] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:10.100524] SENT
+  [2026-12-27 15:38:39.124437] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:11.100026] SENT
+  [2026-12-27 15:38:40.121864] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:12.101427] SENT
+  [2026-12-27 15:38:41.121468] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a
 
-  [2026-12-27 14:06:13.100387] SENT
+  [2026-12-27 15:38:42.123531] SENT
     Operation: Write Command
     Handle: 0x0020
     Data: 20003a26a20262fa26020d0a

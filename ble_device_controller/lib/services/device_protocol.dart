@@ -99,6 +99,49 @@ class DeviceProtocol {
     );
   }
 
+  /// Build raw control packet with exact byte layout from btsnoop analysis
+  /// Format: [Header][a3][0d][62fa][enabled][mode][subMode][param][value1 2B][value2 4B][checksum 2B][CRLF]
+  static Uint8List buildRawControlPacket({
+    required int enabled,
+    required int mode,
+    required int subMode,
+    required int param,
+    required int value1,
+    required int value2,
+  }) {
+    // Build the data portion for checksum
+    List<int> data = [
+      enabled & 0xff,
+      mode & 0xff,
+      subMode & 0xff,
+      param & 0xff,
+      (value1 >> 8) & 0xff,   // value1 high byte first (big endian in packet)
+      value1 & 0xff,          // value1 low byte
+      (value2 >> 24) & 0xff,  // value2 bytes
+      (value2 >> 16) & 0xff,
+      (value2 >> 8) & 0xff,
+      value2 & 0xff,
+    ];
+
+    // Calculate checksum (sum of all data bytes + header bytes)
+    int checksum = 0x08;  // Base from observed packets
+    for (var b in data) {
+      checksum += b;
+    }
+    checksum &= 0xFFFF;
+
+    return Uint8List.fromList([
+      ...HEADER,                    // 20 00 3a 26
+      CMD_CONTROL,                  // a3
+      0x0d,                         // length (13 bytes)
+      ...DEVICE_ID,                 // 62 fa
+      ...data,                      // control data
+      (checksum >> 8) & 0xff,       // checksum high
+      checksum & 0xff,              // checksum low
+      ...FOOTER,                    // 0d 0a
+    ]);
+  }
+
   /// Build motor/speed control packet
   /// Decoded from control commands in btsnoop
   static Uint8List buildSpeedControlPacket({
@@ -156,29 +199,89 @@ class DeviceCommands {
   /// Heartbeat/polling command
   static Uint8List get poll => DeviceProtocol.buildPollPacket();
 
-  /// Turn device on
-  static Uint8List get turnOn => DeviceProtocol.buildOnOffPacket(true);
+  /// Turn FAN on (mode=0x00)
+  static Uint8List get fanOn => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x01,
+    mode: 0x00,
+    subMode: 0xff,
+    param: 0x32,
+    value1: 0x0c80,  // Little endian for 800c
+    value2: 0xffffffff,
+  );
 
-  /// Turn device off
-  static Uint8List get turnOff => DeviceProtocol.buildOnOffPacket(false);
+  /// Turn FAN off
+  static Uint8List get fanOff => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x00,
+    mode: 0x00,
+    subMode: 0xff,
+    param: 0x32,
+    value1: 0x0c80,
+    value2: 0xffffffff,
+  );
+
+  /// Turn LIGHT on (mode=0x02)
+  static Uint8List get lightOn => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x01,
+    mode: 0x02,
+    subMode: 0x07,  // Default brightness level
+    param: 0x32,
+    value1: 0xffff,
+    value2: 0x000564,  // From log: 640500 in little endian
+  );
+
+  /// Turn LIGHT off
+  static Uint8List get lightOff => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x00,
+    mode: 0x02,
+    subMode: 0x07,
+    param: 0x32,
+    value1: 0xffff,
+    value2: 0x000564,
+  );
+
+  /// Turn BOTH fan and light on
+  static Uint8List get allOn => fanOn;  // Send fan first, then light separately
+
+  /// Turn BOTH fan and light off
+  static Uint8List get allOff => fanOff;
+
+  /// Fan speed control (value is 16-bit speed)
+  static Uint8List fanSpeed(int speed) => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x01,
+    mode: 0x00,
+    subMode: 0xff,
+    param: 0x32,
+    value1: speed.clamp(0, 0xFFFF),
+    value2: 0xffffffff,
+  );
+
+  /// Light brightness (subMode is brightness level)
+  static Uint8List lightBrightness(int level) => DeviceProtocol.buildRawControlPacket(
+    enabled: 0x01,
+    mode: 0x02,
+    subMode: level.clamp(0, 0xFF),
+    param: 0x32,
+    value1: 0xffff,
+    value2: 0x000564,
+  );
+
+  /// Legacy: Turn device on (fan only)
+  static Uint8List get turnOn => fanOn;
+
+  /// Legacy: Turn device off (fan only)
+  static Uint8List get turnOff => fanOff;
 
   /// Speed control presets (decoded from btsnoop)
-  static Uint8List speedLow() => DeviceProtocol.buildSpeedControlPacket(
-    speed: 25,
-    direction: 1,
-  );
-
-  static Uint8List speedMedium() => DeviceProtocol.buildSpeedControlPacket(
-    speed: 50,
-    direction: 1,
-  );
-
-  static Uint8List speedHigh() => DeviceProtocol.buildSpeedControlPacket(
-    speed: 100,
-    direction: 1,
-  );
+  static Uint8List speedLow() => fanSpeed(0x0c80);
+  static Uint8List speedMedium() => fanSpeed(0x1200);
+  static Uint8List speedHigh() => fanSpeed(0x1815);
 
   /// Custom speed
-  static Uint8List customSpeed(int percent) =>
-    DeviceProtocol.buildSpeedControlPacket(speed: percent, direction: 1);
+  static Uint8List customSpeed(int percent) {
+    // Map 0-100% to device range (0x0c80 to 0x1964)
+    int minSpeed = 0x0c80;
+    int maxSpeed = 0x1964;
+    int speed = minSpeed + ((maxSpeed - minSpeed) * percent ~/ 100);
+    return fanSpeed(speed);
+  }
 }
