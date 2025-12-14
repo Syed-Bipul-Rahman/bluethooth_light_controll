@@ -339,6 +339,34 @@ class BleService extends ChangeNotifier {
     return sendData(DeviceCommands.lightBrightness(level));
   }
 
+  /// Send White mode command
+  Future<bool> sendWhiteMode({
+    required int daylightKelvin,
+    required int intensity,
+  }) async {
+    _log('Sending: White mode - ${daylightKelvin}K, $intensity%');
+    return sendData(DeviceCommands.whiteMode(
+      daylightKelvin: daylightKelvin,
+      intensity: intensity,
+    ));
+  }
+
+  /// Send Effect mode command
+  Future<bool> sendEffectMode({
+    required LightMode mode,
+    required int intensity,
+    required int daylightKelvin,
+    required int frequency,
+  }) async {
+    _log('Sending: ${mode.displayName} - ${daylightKelvin}K, $intensity%, freq=$frequency');
+    return sendData(DeviceCommands.effectMode(
+      mode: mode,
+      intensity: intensity,
+      daylightKelvin: daylightKelvin,
+      frequency: frequency,
+    ));
+  }
+
   /// Send BOTH fan and light on
   Future<bool> sendAllOn() async {
     _log('Sending: ALL ON (fan + light)');

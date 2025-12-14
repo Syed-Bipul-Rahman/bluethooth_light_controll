@@ -5,6 +5,9 @@ import 'dart:typed_data';
 /// Packet Structure:
 /// [Header: 20 00 3a 26] [Cmd: a2/a3] [Length] [Data...] [Footer: 0d 0a]
 ///
+/// Light Control Packet:
+/// [Header][a3][0d][62fa][enabled][type:02][mode][intensity][daylight_16bit_LE][ffffff][freq][ff][checksum][0d0a]
+///
 /// Command Types:
 /// - 0xa2: Poll/Status query (heartbeat)
 /// - 0xa3: Control command with parameters
@@ -34,6 +37,27 @@ class DeviceProtocol {
 
   // Target device address from btsnoop
   static const String TARGET_DEVICE_ADDRESS = "62:FA:DB:F9:85:E9";
+
+  // Light mode constants (decoded from btsnoop)
+  static const int LIGHT_MODE_WHITE = 0x10;
+  static const int LIGHT_MODE_CANDLE = 0x08;
+  static const int LIGHT_MODE_PULSE = 0x0a;
+  static const int LIGHT_MODE_CCTLOOP = 0x11;
+  static const int LIGHT_MODE_FLUSH = 0x12;
+  static const int LIGHT_MODE_LIGHTNING = 0x0f;
+  static const int LIGHT_MODE_TV = 0x03;
+  static const int LIGHT_MODE_PAPARAZZI = 0x04;
+  static const int LIGHT_MODE_BREATHING = 0x09;
+  static const int LIGHT_MODE_FIREWORKS = 0x0d;
+  static const int LIGHT_MODE_BLAST = 0x0e;
+  static const int LIGHT_MODE_BADBULB = 0x0b;
+  static const int LIGHT_MODE_WELDING = 0x0c;
+
+  // Daylight temperature range (Kelvin to device value)
+  static const int DAYLIGHT_MIN_K = 2700;
+  static const int DAYLIGHT_MAX_K = 6500;
+  static const int DAYLIGHT_MIN_VAL = 0x0A8C; // 2700K
+  static const int DAYLIGHT_MAX_VAL = 0x1964; // 6500K
 
   /// Build a poll/heartbeat packet
   /// Based on: 20003a26a20262fa26020d0a
@@ -192,6 +216,90 @@ class DeviceProtocol {
   static String bytesToHex(Uint8List bytes) {
     return bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join('');
   }
+
+  /// Convert Kelvin temperature to device value
+  static int kelvinToDeviceValue(int kelvin) {
+    kelvin = kelvin.clamp(DAYLIGHT_MIN_K, DAYLIGHT_MAX_K);
+    double ratio = (kelvin - DAYLIGHT_MIN_K) / (DAYLIGHT_MAX_K - DAYLIGHT_MIN_K);
+    return (DAYLIGHT_MIN_VAL + (DAYLIGHT_MAX_VAL - DAYLIGHT_MIN_VAL) * ratio).round();
+  }
+
+  /// Convert intensity percentage to device value (0-100 -> 0x00-0x64)
+  static int intensityToDeviceValue(int percent) {
+    return percent.clamp(0, 100);
+  }
+
+  /// Build light control packet for White mode and Effect modes
+  /// Format: [Header][a3][0d][62fa][enabled][type:02][mode][intensity][daylight_LE][ffffff][freq][ff][checksum][0d0a]
+  static Uint8List buildLightControlPacket({
+    required bool enabled,
+    required int mode,
+    required int intensity, // 0-100%
+    required int daylightKelvin, // 2700-6500K
+    int frequency = 5, // 1-10
+  }) {
+    int daylightVal = kelvinToDeviceValue(daylightKelvin);
+    int intensityVal = intensityToDeviceValue(intensity);
+    int freqVal = frequency.clamp(1, 10);
+
+    // Build data portion
+    List<int> data = [
+      enabled ? 0x01 : 0x00,              // enabled
+      0x02,                                // type (light control)
+      mode & 0xff,                         // mode
+      intensityVal & 0xff,                 // intensity
+      (daylightVal >> 8) & 0xff,          // daylight high byte
+      daylightVal & 0xff,                  // daylight low byte
+      0xff, 0xff, 0xff,                   // padding
+      freqVal & 0xff,                     // frequency
+    ];
+
+    // Calculate checksum
+    int checksum = 0x08;
+    for (var b in data) {
+      checksum += b;
+    }
+    checksum &= 0xFFFF;
+
+    return Uint8List.fromList([
+      ...HEADER,
+      CMD_CONTROL,
+      0x0d,
+      ...DEVICE_ID,
+      ...data,
+      (checksum >> 8) & 0xff,
+      checksum & 0xff,
+      ...FOOTER,
+    ]);
+  }
+}
+
+/// Light effect mode enumeration
+enum LightMode {
+  white(DeviceProtocol.LIGHT_MODE_WHITE, 'White', true),
+  candle(DeviceProtocol.LIGHT_MODE_CANDLE, 'Candle', true),
+  pulse(DeviceProtocol.LIGHT_MODE_PULSE, 'Pulse', true),
+  cctloop(DeviceProtocol.LIGHT_MODE_CCTLOOP, 'CCT Loop', false), // No daylight
+  flush(DeviceProtocol.LIGHT_MODE_FLUSH, 'Flush', true),
+  lightning(DeviceProtocol.LIGHT_MODE_LIGHTNING, 'Lightning', true),
+  tv(DeviceProtocol.LIGHT_MODE_TV, 'TV', true),
+  paparazzi(DeviceProtocol.LIGHT_MODE_PAPARAZZI, 'Paparazzi', true),
+  breathing(DeviceProtocol.LIGHT_MODE_BREATHING, 'Breathing', true),
+  fireworks(DeviceProtocol.LIGHT_MODE_FIREWORKS, 'Fireworks', false), // No daylight
+  blast(DeviceProtocol.LIGHT_MODE_BLAST, 'Blast', true),
+  badBulb(DeviceProtocol.LIGHT_MODE_BADBULB, 'Bad Bulb', true),
+  welding(DeviceProtocol.LIGHT_MODE_WELDING, 'Welding', true);
+
+  final int code;
+  final String displayName;
+  final bool hasDaylight;
+
+  const LightMode(this.code, this.displayName, this.hasDaylight);
+
+  static List<LightMode> get effectModes => [
+    candle, pulse, cctloop, flush, lightning, tv,
+    paparazzi, breathing, fireworks, blast, badBulb, welding
+  ];
 }
 
 /// Command presets based on btsnoop analysis
@@ -205,7 +313,7 @@ class DeviceCommands {
     mode: 0x00,
     subMode: 0xff,
     param: 0x32,
-    value1: 0x0c80,  // Little endian for 800c
+    value1: 0x0c80,
     value2: 0xffffffff,
   );
 
@@ -223,10 +331,10 @@ class DeviceCommands {
   static Uint8List get lightOn => DeviceProtocol.buildRawControlPacket(
     enabled: 0x01,
     mode: 0x02,
-    subMode: 0x07,  // Default brightness level
+    subMode: 0x07,
     param: 0x32,
     value1: 0xffff,
-    value2: 0x000564,  // From log: 640500 in little endian
+    value2: 0x000564,
   );
 
   /// Turn LIGHT off
@@ -240,12 +348,12 @@ class DeviceCommands {
   );
 
   /// Turn BOTH fan and light on
-  static Uint8List get allOn => fanOn;  // Send fan first, then light separately
+  static Uint8List get allOn => fanOn;
 
   /// Turn BOTH fan and light off
   static Uint8List get allOff => fanOff;
 
-  /// Fan speed control (value is 16-bit speed)
+  /// Fan speed control
   static Uint8List fanSpeed(int speed) => DeviceProtocol.buildRawControlPacket(
     enabled: 0x01,
     mode: 0x00,
@@ -255,7 +363,7 @@ class DeviceCommands {
     value2: 0xffffffff,
   );
 
-  /// Light brightness (subMode is brightness level)
+  /// Light brightness (legacy)
   static Uint8List lightBrightness(int level) => DeviceProtocol.buildRawControlPacket(
     enabled: 0x01,
     mode: 0x02,
@@ -265,20 +373,48 @@ class DeviceCommands {
     value2: 0x000564,
   );
 
-  /// Legacy: Turn device on (fan only)
-  static Uint8List get turnOn => fanOn;
+  /// White mode control with daylight and intensity
+  static Uint8List whiteMode({
+    required int daylightKelvin,
+    required int intensity,
+  }) => DeviceProtocol.buildLightControlPacket(
+    enabled: true,
+    mode: DeviceProtocol.LIGHT_MODE_WHITE,
+    intensity: intensity,
+    daylightKelvin: daylightKelvin,
+  );
 
-  /// Legacy: Turn device off (fan only)
+  /// Effect mode control with all parameters
+  static Uint8List effectMode({
+    required LightMode mode,
+    required int intensity,
+    required int daylightKelvin,
+    required int frequency,
+  }) => DeviceProtocol.buildLightControlPacket(
+    enabled: true,
+    mode: mode.code,
+    intensity: intensity,
+    daylightKelvin: mode.hasDaylight ? daylightKelvin : 4600,
+    frequency: frequency,
+  );
+
+  /// Turn light off
+  static Uint8List lightOff2() => DeviceProtocol.buildLightControlPacket(
+    enabled: false,
+    mode: DeviceProtocol.LIGHT_MODE_WHITE,
+    intensity: 0,
+    daylightKelvin: 4600,
+  );
+
+  /// Legacy methods
+  static Uint8List get turnOn => fanOn;
   static Uint8List get turnOff => fanOff;
 
-  /// Speed control presets (decoded from btsnoop)
   static Uint8List speedLow() => fanSpeed(0x0c80);
   static Uint8List speedMedium() => fanSpeed(0x1200);
   static Uint8List speedHigh() => fanSpeed(0x1815);
 
-  /// Custom speed
   static Uint8List customSpeed(int percent) {
-    // Map 0-100% to device range (0x0c80 to 0x1964)
     int minSpeed = 0x0c80;
     int maxSpeed = 0x1964;
     int speed = minSpeed + ((maxSpeed - minSpeed) * percent ~/ 100);
