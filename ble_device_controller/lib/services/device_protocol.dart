@@ -38,20 +38,21 @@ class DeviceProtocol {
   // Target device address from btsnoop
   static const String TARGET_DEVICE_ADDRESS = "62:FA:DB:F9:85:E9";
 
-  // Light mode constants (decoded from btsnoop)
+  // Light mode constants (corrected based on device testing)
+  // Derived from user observation of app→device mode mapping
   static const int LIGHT_MODE_WHITE = 0x10;
-  static const int LIGHT_MODE_CANDLE = 0x08;
-  static const int LIGHT_MODE_PULSE = 0x0a;
-  static const int LIGHT_MODE_CCTLOOP = 0x11;
-  static const int LIGHT_MODE_FLUSH = 0x12;
-  static const int LIGHT_MODE_LIGHTNING = 0x0f;
-  static const int LIGHT_MODE_TV = 0x03;
-  static const int LIGHT_MODE_PAPARAZZI = 0x04;
-  static const int LIGHT_MODE_BREATHING = 0x09;
-  static const int LIGHT_MODE_FIREWORKS = 0x0d;
-  static const int LIGHT_MODE_BLAST = 0x0e;
-  static const int LIGHT_MODE_BADBULB = 0x0b;
-  static const int LIGHT_MODE_WELDING = 0x0c;
+  static const int LIGHT_MODE_CANDLE = 0x11;     // was 0x08 (showed bad bulb)
+  static const int LIGHT_MODE_PULSE = 0x12;      // was 0x0a (showed welding)
+  static const int LIGHT_MODE_CCTLOOP = 0x0d;    // was 0x11 (showed candle)
+  static const int LIGHT_MODE_FLUSH = 0x0f;      // was 0x12 (showed pulse)
+  static const int LIGHT_MODE_LIGHTNING = 0x03;  // was 0x0f (showed flash)
+  static const int LIGHT_MODE_TV = 0x04;         // was 0x03 (showed lightning)
+  static const int LIGHT_MODE_PAPARAZZI = 0x05;  // was 0x04 (showed tv)
+  static const int LIGHT_MODE_BREATHING = 0x0e;  // was 0x09 (showed fireworks)
+  static const int LIGHT_MODE_FIREWORKS = 0x09;  // was 0x0d (showed cctloop)
+  static const int LIGHT_MODE_BLAST = 0x06;      // was 0x0e (showed breathing)
+  static const int LIGHT_MODE_BADBULB = 0x08;    // was 0x0b (showed breathing)
+  static const int LIGHT_MODE_WELDING = 0x0a;    // was 0x0c (showed breathing)
 
   // Daylight temperature range (Kelvin to device value)
   static const int DAYLIGHT_MIN_K = 2700;
@@ -248,8 +249,8 @@ class DeviceProtocol {
       0x02,                                // type (light control)
       mode & 0xff,                         // mode
       intensityVal & 0xff,                 // intensity
-      (daylightVal >> 8) & 0xff,          // daylight high byte
-      daylightVal & 0xff,                  // daylight low byte
+      daylightVal & 0xff,                  // daylight LOW byte first (little-endian)
+      (daylightVal >> 8) & 0xff,          // daylight HIGH byte second
       0xff, 0xff, 0xff,                   // padding
       freqVal & 0xff,                     // frequency
     ];
