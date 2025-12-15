@@ -83,7 +83,8 @@ class _ControlScreenState extends State<ControlScreen>
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(bleService.connectedDevice?.platformName ?? 'Light Control'),
+            title: Text(
+                bleService.connectedDevice?.platformName ?? 'Light Control'),
             actions: [
               IconButton(
                 icon: const Icon(Icons.power_settings_new),
@@ -154,7 +155,8 @@ class _ControlScreenState extends State<ControlScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Colors.orange.shade300, Colors.blue.shade200],
@@ -174,7 +176,8 @@ class _ControlScreenState extends State<ControlScreen>
             const SizedBox(height: 8),
             Row(
               children: [
-                const Text('2700K', style: TextStyle(fontSize: 12, color: Colors.orange)),
+                const Text('2700K',
+                    style: TextStyle(fontSize: 12, color: Colors.orange)),
                 Expanded(
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
@@ -196,17 +199,22 @@ class _ControlScreenState extends State<ControlScreen>
                     ),
                   ),
                 ),
-                const Text('6500K', style: TextStyle(fontSize: 12, color: Colors.blue)),
+                const Text('6500K',
+                    style: TextStyle(fontSize: 12, color: Colors.blue)),
               ],
             ),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildDaylightPresetButton(bleService, 'Warm', 2700, Colors.orange),
-                _buildDaylightPresetButton(bleService, 'Neutral', 4600, Colors.amber),
-                _buildDaylightPresetButton(bleService, 'Cool', 5500, Colors.lightBlue),
-                _buildDaylightPresetButton(bleService, 'Daylight', 6500, Colors.blue),
+                _buildDaylightPresetButton(
+                    bleService, 'Warm', 2700, Colors.orange),
+                _buildDaylightPresetButton(
+                    bleService, 'Neutral', 4600, Colors.amber),
+                _buildDaylightPresetButton(
+                    bleService, 'Cool', 5500, Colors.lightBlue),
+                _buildDaylightPresetButton(
+                    bleService, 'Daylight', 6500, Colors.blue),
               ],
             ),
           ],
@@ -249,7 +257,8 @@ class _ControlScreenState extends State<ControlScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.circular(16),
@@ -454,7 +463,8 @@ class _ControlScreenState extends State<ControlScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Colors.orange.shade300, Colors.blue.shade200],
@@ -474,7 +484,8 @@ class _ControlScreenState extends State<ControlScreen>
             const SizedBox(height: 8),
             Row(
               children: [
-                const Text('2700K', style: TextStyle(fontSize: 12, color: Colors.orange)),
+                const Text('2700K',
+                    style: TextStyle(fontSize: 12, color: Colors.orange)),
                 Expanded(
                   child: Slider(
                     value: _effectDaylight,
@@ -489,7 +500,8 @@ class _ControlScreenState extends State<ControlScreen>
                     onChangeEnd: (value) => _sendEffectMode(bleService),
                   ),
                 ),
-                const Text('6500K', style: TextStyle(fontSize: 12, color: Colors.blue)),
+                const Text('6500K',
+                    style: TextStyle(fontSize: 12, color: Colors.blue)),
               ],
             ),
           ],
@@ -515,7 +527,8 @@ class _ControlScreenState extends State<ControlScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.circular(16),
@@ -574,7 +587,8 @@ class _ControlScreenState extends State<ControlScreen>
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(16),
@@ -592,7 +606,9 @@ class _ControlScreenState extends State<ControlScreen>
             const SizedBox(height: 8),
             Row(
               children: [
-                const Text('1', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                const Text('1',
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 Expanded(
                   child: Slider(
                     value: _effectFrequency,
@@ -607,7 +623,9 @@ class _ControlScreenState extends State<ControlScreen>
                     onChangeEnd: (value) => _sendEffectMode(bleService),
                   ),
                 ),
-                const Text('10', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                const Text('10',
+                    style:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 8),

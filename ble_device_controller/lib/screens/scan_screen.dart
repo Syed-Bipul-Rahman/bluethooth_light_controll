@@ -187,10 +187,10 @@ class _ScanScreenState extends State<ScanScreen> {
               ],
             ),
             trailing: ElevatedButton(
-              onPressed: bleService.connectionState ==
-                      BleConnectionState.connecting
-                  ? null
-                  : () => _connectToDevice(bleService, device),
+              onPressed:
+                  bleService.connectionState == BleConnectionState.connecting
+                      ? null
+                      : () => _connectToDevice(bleService, device),
               child: const Text('Connect'),
             ),
           ),
@@ -213,7 +213,8 @@ class _ScanScreenState extends State<ScanScreen> {
             color: Colors.grey.shade900,
             child: Row(
               children: [
-                const Text('Log', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Log',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.clear_all, size: 18),
@@ -253,7 +254,8 @@ class _ScanScreenState extends State<ScanScreen> {
   }
 
   Widget _buildScanButton(BleService bleService) {
-    final isScanning = bleService.connectionState == BleConnectionState.scanning;
+    final isScanning =
+        bleService.connectionState == BleConnectionState.scanning;
 
     return FloatingActionButton.extended(
       onPressed: isScanning

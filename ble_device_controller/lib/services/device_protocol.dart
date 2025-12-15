@@ -24,10 +24,14 @@ class DeviceProtocol {
   static const List<int> DEVICE_ID = [0x62, 0xfa];
 
   // Service UUIDs discovered from the device
-  static const String SERVICE_UUID_FFE9 = "0000ffe9-0000-1000-8000-00805f9b34fb";
-  static const String SERVICE_UUID_FFE4 = "0000ffe4-0000-1000-8000-00805f9b34fb";
-  static const String SERVICE_UUID_AE01 = "0000ae01-0000-1000-8000-00805f9b34fb";
-  static const String SERVICE_UUID_AE02 = "0000ae02-0000-1000-8000-00805f9b34fb";
+  static const String SERVICE_UUID_FFE9 =
+      "0000ffe9-0000-1000-8000-00805f9b34fb";
+  static const String SERVICE_UUID_FFE4 =
+      "0000ffe4-0000-1000-8000-00805f9b34fb";
+  static const String SERVICE_UUID_AE01 =
+      "0000ae01-0000-1000-8000-00805f9b34fb";
+  static const String SERVICE_UUID_AE02 =
+      "0000ae02-0000-1000-8000-00805f9b34fb";
 
   // Characteristic UUIDs (derived from handles in btsnoop)
   // Handle 0x0020 is in service FFE9 (0x001E-0x0021)
@@ -41,18 +45,18 @@ class DeviceProtocol {
   // Light mode constants (corrected based on device testing)
   // Derived from user observation of app→device mode mapping
   static const int LIGHT_MODE_WHITE = 0x10;
-  static const int LIGHT_MODE_CANDLE = 0x11;     // was 0x08 (showed bad bulb)
-  static const int LIGHT_MODE_PULSE = 0x12;      // was 0x0a (showed welding)
-  static const int LIGHT_MODE_CCTLOOP = 0x0d;    // was 0x11 (showed candle)
-  static const int LIGHT_MODE_FLUSH = 0x0f;      // was 0x12 (showed pulse)
-  static const int LIGHT_MODE_LIGHTNING = 0x03;  // was 0x0f (showed flash)
-  static const int LIGHT_MODE_TV = 0x04;         // was 0x03 (showed lightning)
-  static const int LIGHT_MODE_PAPARAZZI = 0x05;  // was 0x04 (showed tv)
-  static const int LIGHT_MODE_BREATHING = 0x0e;  // was 0x09 (showed fireworks)
-  static const int LIGHT_MODE_FIREWORKS = 0x09;  // was 0x0d (showed cctloop)
-  static const int LIGHT_MODE_BLAST = 0x06;      // was 0x0e (showed breathing)
-  static const int LIGHT_MODE_BADBULB = 0x08;    // was 0x0b (showed breathing)
-  static const int LIGHT_MODE_WELDING = 0x0a;    // was 0x0c (showed breathing)
+  static const int LIGHT_MODE_CANDLE = 0x11; // was 0x08 (showed bad bulb)
+  static const int LIGHT_MODE_PULSE = 0x12; // was 0x0a (showed welding)
+  static const int LIGHT_MODE_CCTLOOP = 0x0d; // was 0x11 (showed candle)
+  static const int LIGHT_MODE_FLUSH = 0x0f; // was 0x12 (showed pulse)
+  static const int LIGHT_MODE_LIGHTNING = 0x03; // was 0x0f (showed flash)
+  static const int LIGHT_MODE_TV = 0x04; // was 0x03 (showed lightning)
+  static const int LIGHT_MODE_PAPARAZZI = 0x05; // was 0x04 (showed tv)
+  static const int LIGHT_MODE_BREATHING = 0x0e; // was 0x09 (showed fireworks)
+  static const int LIGHT_MODE_FIREWORKS = 0x09; // was 0x0d (showed cctloop)
+  static const int LIGHT_MODE_BLAST = 0x06; // was 0x0e (showed breathing)
+  static const int LIGHT_MODE_BADBULB = 0x08; // was 0x0b (showed breathing)
+  static const int LIGHT_MODE_WELDING = 0x0a; // was 0x0c (showed breathing)
 
   // Daylight temperature range (Kelvin to device value)
   static const int DAYLIGHT_MIN_K = 2700;
@@ -64,12 +68,12 @@ class DeviceProtocol {
   /// Based on: 20003a26a20262fa26020d0a
   static Uint8List buildPollPacket() {
     return Uint8List.fromList([
-      ...HEADER,        // 20 00 3a 26
-      CMD_POLL,         // a2
-      0x02,             // length
-      ...DEVICE_ID,     // 62 fa
-      0x26, 0x02,       // additional data
-      ...FOOTER,        // 0d 0a
+      ...HEADER, // 20 00 3a 26
+      CMD_POLL, // a2
+      0x02, // length
+      ...DEVICE_ID, // 62 fa
+      0x26, 0x02, // additional data
+      ...FOOTER, // 0d 0a
     ]);
   }
 
@@ -90,27 +94,30 @@ class DeviceProtocol {
   }) {
     // Calculate checksum (sum of data bytes)
     int checksum = _calculateChecksum([
-      enabled, mode,
-      value1 & 0xff, (value1 >> 8) & 0xff,
-      value2 & 0xff, (value2 >> 8) & 0xff,
+      enabled,
+      mode,
+      value1 & 0xff,
+      (value1 >> 8) & 0xff,
+      value2 & 0xff,
+      (value2 >> 8) & 0xff,
       flags,
     ]);
 
     return Uint8List.fromList([
-      ...HEADER,                          // 20 00 3a 26
-      CMD_CONTROL,                        // a3
-      0x0d,                               // length (13 bytes)
-      ...DEVICE_ID,                       // 62 fa
-      enabled & 0xff,                     // enabled flag
-      mode & 0xff,                        // mode
-      value1 & 0xff,                      // value1 low byte
-      (value1 >> 8) & 0xff,               // value1 high byte
-      value2 & 0xff,                      // value2 low byte
-      (value2 >> 8) & 0xff,               // value2 high byte
-      0xff, 0xff, 0xff, 0xff,             // reserved/padding
-      (checksum >> 8) & 0xff,             // checksum high
-      checksum & 0xff,                    // checksum low
-      ...FOOTER,                          // 0d 0a
+      ...HEADER, // 20 00 3a 26
+      CMD_CONTROL, // a3
+      0x0d, // length (13 bytes)
+      ...DEVICE_ID, // 62 fa
+      enabled & 0xff, // enabled flag
+      mode & 0xff, // mode
+      value1 & 0xff, // value1 low byte
+      (value1 >> 8) & 0xff, // value1 high byte
+      value2 & 0xff, // value2 low byte
+      (value2 >> 8) & 0xff, // value2 high byte
+      0xff, 0xff, 0xff, 0xff, // reserved/padding
+      (checksum >> 8) & 0xff, // checksum high
+      checksum & 0xff, // checksum low
+      ...FOOTER, // 0d 0a
     ]);
   }
 
@@ -119,7 +126,7 @@ class DeviceProtocol {
     return buildControlPacket(
       enabled: turnOn ? 0x01 : 0x00,
       mode: 0xff,
-      value1: 0x3280,  // Default value from log
+      value1: 0x3280, // Default value from log
       value2: 0x0cff,
     );
   }
@@ -140,38 +147,38 @@ class DeviceProtocol {
       mode & 0xff,
       subMode & 0xff,
       param & 0xff,
-      (value1 >> 8) & 0xff,   // value1 high byte first (big endian in packet)
-      value1 & 0xff,          // value1 low byte
-      (value2 >> 24) & 0xff,  // value2 bytes
+      (value1 >> 8) & 0xff, // value1 high byte first (big endian in packet)
+      value1 & 0xff, // value1 low byte
+      (value2 >> 24) & 0xff, // value2 bytes
       (value2 >> 16) & 0xff,
       (value2 >> 8) & 0xff,
       value2 & 0xff,
     ];
 
     // Calculate checksum (sum of all data bytes + header bytes)
-    int checksum = 0x08;  // Base from observed packets
+    int checksum = 0x08; // Base from observed packets
     for (var b in data) {
       checksum += b;
     }
     checksum &= 0xFFFF;
 
     return Uint8List.fromList([
-      ...HEADER,                    // 20 00 3a 26
-      CMD_CONTROL,                  // a3
-      0x0d,                         // length (13 bytes)
-      ...DEVICE_ID,                 // 62 fa
-      ...data,                      // control data
-      (checksum >> 8) & 0xff,       // checksum high
-      checksum & 0xff,              // checksum low
-      ...FOOTER,                    // 0d 0a
+      ...HEADER, // 20 00 3a 26
+      CMD_CONTROL, // a3
+      0x0d, // length (13 bytes)
+      ...DEVICE_ID, // 62 fa
+      ...data, // control data
+      (checksum >> 8) & 0xff, // checksum high
+      checksum & 0xff, // checksum low
+      ...FOOTER, // 0d 0a
     ]);
   }
 
   /// Build motor/speed control packet
   /// Decoded from control commands in btsnoop
   static Uint8List buildSpeedControlPacket({
-    required int speed,      // 0-100
-    required int direction,  // 0 or 1
+    required int speed, // 0-100
+    required int direction, // 0 or 1
   }) {
     // Map speed to device range (based on observed values)
     int mappedSpeed = (speed * 0x1815 ~/ 100).clamp(0, 0xFFFF);
@@ -221,8 +228,10 @@ class DeviceProtocol {
   /// Convert Kelvin temperature to device value
   static int kelvinToDeviceValue(int kelvin) {
     kelvin = kelvin.clamp(DAYLIGHT_MIN_K, DAYLIGHT_MAX_K);
-    double ratio = (kelvin - DAYLIGHT_MIN_K) / (DAYLIGHT_MAX_K - DAYLIGHT_MIN_K);
-    return (DAYLIGHT_MIN_VAL + (DAYLIGHT_MAX_VAL - DAYLIGHT_MIN_VAL) * ratio).round();
+    double ratio =
+        (kelvin - DAYLIGHT_MIN_K) / (DAYLIGHT_MAX_K - DAYLIGHT_MIN_K);
+    return (DAYLIGHT_MIN_VAL + (DAYLIGHT_MAX_VAL - DAYLIGHT_MIN_VAL) * ratio)
+        .round();
   }
 
   /// Convert intensity percentage to device value (0-100 -> 0x00-0x64)
@@ -245,14 +254,14 @@ class DeviceProtocol {
 
     // Build data portion
     List<int> data = [
-      enabled ? 0x01 : 0x00,              // enabled
-      0x02,                                // type (light control)
-      mode & 0xff,                         // mode
-      intensityVal & 0xff,                 // intensity
-      daylightVal & 0xff,                  // daylight LOW byte first (little-endian)
-      (daylightVal >> 8) & 0xff,          // daylight HIGH byte second
-      0xff, 0xff, 0xff,                   // padding
-      freqVal & 0xff,                     // frequency
+      enabled ? 0x01 : 0x00, // enabled
+      0x02, // type (light control)
+      mode & 0xff, // mode
+      intensityVal & 0xff, // intensity
+      daylightVal & 0xff, // daylight LOW byte first (little-endian)
+      (daylightVal >> 8) & 0xff, // daylight HIGH byte second
+      0xff, 0xff, 0xff, // padding
+      freqVal & 0xff, // frequency
     ];
 
     // Calculate checksum
@@ -286,7 +295,8 @@ enum LightMode {
   tv(DeviceProtocol.LIGHT_MODE_TV, 'TV', true),
   paparazzi(DeviceProtocol.LIGHT_MODE_PAPARAZZI, 'Paparazzi', true),
   breathing(DeviceProtocol.LIGHT_MODE_BREATHING, 'Breathing', true),
-  fireworks(DeviceProtocol.LIGHT_MODE_FIREWORKS, 'Fireworks', false), // No daylight
+  fireworks(
+      DeviceProtocol.LIGHT_MODE_FIREWORKS, 'Fireworks', false), // No daylight
   blast(DeviceProtocol.LIGHT_MODE_BLAST, 'Blast', true),
   badBulb(DeviceProtocol.LIGHT_MODE_BADBULB, 'Bad Bulb', true),
   welding(DeviceProtocol.LIGHT_MODE_WELDING, 'Welding', true);
@@ -298,9 +308,19 @@ enum LightMode {
   const LightMode(this.code, this.displayName, this.hasDaylight);
 
   static List<LightMode> get effectModes => [
-    candle, pulse, cctloop, flush, lightning, tv,
-    paparazzi, breathing, fireworks, blast, badBulb, welding
-  ];
+        candle,
+        pulse,
+        cctloop,
+        flush,
+        lightning,
+        tv,
+        paparazzi,
+        breathing,
+        fireworks,
+        blast,
+        badBulb,
+        welding
+      ];
 }
 
 /// Command presets based on btsnoop analysis
@@ -310,43 +330,43 @@ class DeviceCommands {
 
   /// Turn FAN on (mode=0x00)
   static Uint8List get fanOn => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x01,
-    mode: 0x00,
-    subMode: 0xff,
-    param: 0x32,
-    value1: 0x0c80,
-    value2: 0xffffffff,
-  );
+        enabled: 0x01,
+        mode: 0x00,
+        subMode: 0xff,
+        param: 0x32,
+        value1: 0x0c80,
+        value2: 0xffffffff,
+      );
 
   /// Turn FAN off
   static Uint8List get fanOff => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x00,
-    mode: 0x00,
-    subMode: 0xff,
-    param: 0x32,
-    value1: 0x0c80,
-    value2: 0xffffffff,
-  );
+        enabled: 0x00,
+        mode: 0x00,
+        subMode: 0xff,
+        param: 0x32,
+        value1: 0x0c80,
+        value2: 0xffffffff,
+      );
 
   /// Turn LIGHT on (mode=0x02)
   static Uint8List get lightOn => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x01,
-    mode: 0x02,
-    subMode: 0x07,
-    param: 0x32,
-    value1: 0xffff,
-    value2: 0x000564,
-  );
+        enabled: 0x01,
+        mode: 0x02,
+        subMode: 0x07,
+        param: 0x32,
+        value1: 0xffff,
+        value2: 0x000564,
+      );
 
   /// Turn LIGHT off
   static Uint8List get lightOff => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x00,
-    mode: 0x02,
-    subMode: 0x07,
-    param: 0x32,
-    value1: 0xffff,
-    value2: 0x000564,
-  );
+        enabled: 0x00,
+        mode: 0x02,
+        subMode: 0x07,
+        param: 0x32,
+        value1: 0xffff,
+        value2: 0x000564,
+      );
 
   /// Turn BOTH fan and light on
   static Uint8List get allOn => fanOn;
@@ -356,34 +376,36 @@ class DeviceCommands {
 
   /// Fan speed control
   static Uint8List fanSpeed(int speed) => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x01,
-    mode: 0x00,
-    subMode: 0xff,
-    param: 0x32,
-    value1: speed.clamp(0, 0xFFFF),
-    value2: 0xffffffff,
-  );
+        enabled: 0x01,
+        mode: 0x00,
+        subMode: 0xff,
+        param: 0x32,
+        value1: speed.clamp(0, 0xFFFF),
+        value2: 0xffffffff,
+      );
 
   /// Light brightness (legacy)
-  static Uint8List lightBrightness(int level) => DeviceProtocol.buildRawControlPacket(
-    enabled: 0x01,
-    mode: 0x02,
-    subMode: level.clamp(0, 0xFF),
-    param: 0x32,
-    value1: 0xffff,
-    value2: 0x000564,
-  );
+  static Uint8List lightBrightness(int level) =>
+      DeviceProtocol.buildRawControlPacket(
+        enabled: 0x01,
+        mode: 0x02,
+        subMode: level.clamp(0, 0xFF),
+        param: 0x32,
+        value1: 0xffff,
+        value2: 0x000564,
+      );
 
   /// White mode control with daylight and intensity
   static Uint8List whiteMode({
     required int daylightKelvin,
     required int intensity,
-  }) => DeviceProtocol.buildLightControlPacket(
-    enabled: true,
-    mode: DeviceProtocol.LIGHT_MODE_WHITE,
-    intensity: intensity,
-    daylightKelvin: daylightKelvin,
-  );
+  }) =>
+      DeviceProtocol.buildLightControlPacket(
+        enabled: true,
+        mode: DeviceProtocol.LIGHT_MODE_WHITE,
+        intensity: intensity,
+        daylightKelvin: daylightKelvin,
+      );
 
   /// Effect mode control with all parameters
   static Uint8List effectMode({
@@ -391,21 +413,22 @@ class DeviceCommands {
     required int intensity,
     required int daylightKelvin,
     required int frequency,
-  }) => DeviceProtocol.buildLightControlPacket(
-    enabled: true,
-    mode: mode.code,
-    intensity: intensity,
-    daylightKelvin: mode.hasDaylight ? daylightKelvin : 4600,
-    frequency: frequency,
-  );
+  }) =>
+      DeviceProtocol.buildLightControlPacket(
+        enabled: true,
+        mode: mode.code,
+        intensity: intensity,
+        daylightKelvin: mode.hasDaylight ? daylightKelvin : 4600,
+        frequency: frequency,
+      );
 
   /// Turn light off
   static Uint8List lightOff2() => DeviceProtocol.buildLightControlPacket(
-    enabled: false,
-    mode: DeviceProtocol.LIGHT_MODE_WHITE,
-    intensity: 0,
-    daylightKelvin: 4600,
-  );
+        enabled: false,
+        mode: DeviceProtocol.LIGHT_MODE_WHITE,
+        intensity: 0,
+        daylightKelvin: 4600,
+      );
 
   /// Legacy methods
   static Uint8List get turnOn => fanOn;

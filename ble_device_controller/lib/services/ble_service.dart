@@ -63,9 +63,8 @@ class BleService extends ChangeNotifier {
         Permission.locationWhenInUse,
       ].request();
 
-      bool allGranted = statuses.values.every(
-        (status) => status == PermissionStatus.granted
-      );
+      bool allGranted =
+          statuses.values.every((status) => status == PermissionStatus.granted);
 
       if (!allGranted) {
         _log('Permissions denied: $statuses');
@@ -78,7 +77,8 @@ class BleService extends ChangeNotifier {
   }
 
   /// Start scanning for BLE devices
-  Future<void> startScan({Duration timeout = const Duration(seconds: 10)}) async {
+  Future<void> startScan(
+      {Duration timeout = const Duration(seconds: 10)}) async {
     try {
       // Request permissions first
       bool hasPermissions = await requestPermissions();
@@ -93,7 +93,8 @@ class BleService extends ChangeNotifier {
       _log('Starting BLE scan...');
 
       // Check if Bluetooth is on
-      if (await FlutterBluePlus.adapterState.first != BluetoothAdapterState.on) {
+      if (await FlutterBluePlus.adapterState.first !=
+          BluetoothAdapterState.on) {
         _setStatus('Bluetooth is off', BleConnectionState.error);
         _log('Error: Bluetooth is off');
         // Try to turn on Bluetooth
@@ -116,7 +117,6 @@ class BleService extends ChangeNotifier {
       // Wait for scan to complete
       await Future.delayed(timeout);
       await stopScan();
-
     } catch (e) {
       _setStatus('Scan error: $e', BleConnectionState.error);
       _log('Scan error: $e');
@@ -128,7 +128,7 @@ class BleService extends ChangeNotifier {
     await FlutterBluePlus.stopScan();
     _scanSubscription?.cancel();
     _setStatus('Scan complete. Found ${_scanResults.length} devices',
-               BleConnectionState.disconnected);
+        BleConnectionState.disconnected);
     _log('Scan stopped');
   }
 
@@ -136,7 +136,7 @@ class BleService extends ChangeNotifier {
   Future<bool> connectToDevice(BluetoothDevice device) async {
     try {
       _setStatus('Connecting to ${device.platformName}...',
-                 BleConnectionState.connecting);
+          BleConnectionState.connecting);
       _log('Connecting to ${device.remoteId}...');
 
       // Listen for connection state changes
@@ -154,8 +154,8 @@ class BleService extends ChangeNotifier {
       // Discover services
       await _discoverServices();
 
-      _setStatus('Connected to ${device.platformName}',
-                 BleConnectionState.connected);
+      _setStatus(
+          'Connected to ${device.platformName}', BleConnectionState.connected);
 
       // Start heartbeat
       _startHeartbeat();
@@ -173,7 +173,8 @@ class BleService extends ChangeNotifier {
     if (_connectedDevice == null) return;
 
     _log('Discovering services...');
-    List<BluetoothService> services = await _connectedDevice!.discoverServices();
+    List<BluetoothService> services =
+        await _connectedDevice!.discoverServices();
 
     for (var service in services) {
       String svcUuid = service.uuid.toString().toUpperCase();
@@ -191,7 +192,9 @@ class BleService extends ChangeNotifier {
           if (svcUuid.contains('FFE9') ||
               svcUuid.contains('FFE4') ||
               svcUuid.contains('AE') ||
-              (!svcUuid.contains('1800') && !svcUuid.contains('1801') && !svcUuid.contains('180A'))) {
+              (!svcUuid.contains('1800') &&
+                  !svcUuid.contains('1801') &&
+                  !svcUuid.contains('180A'))) {
             if (_writeCharacteristic == null || svcUuid.contains('FFE9')) {
               _writeCharacteristic = char;
               _log('  -> Selected as WRITE characteristic');
@@ -201,7 +204,9 @@ class BleService extends ChangeNotifier {
 
         // Find notify characteristic
         if (char.properties.notify || char.properties.indicate) {
-          if (!svcUuid.contains('1800') && !svcUuid.contains('1801') && !svcUuid.contains('180A')) {
+          if (!svcUuid.contains('1800') &&
+              !svcUuid.contains('1801') &&
+              !svcUuid.contains('180A')) {
             if (_notifyCharacteristic == null) {
               _notifyCharacteristic = char;
               _log('  -> Selected as NOTIFY characteristic');
@@ -358,7 +363,8 @@ class BleService extends ChangeNotifier {
     required int daylightKelvin,
     required int frequency,
   }) async {
-    _log('Sending: ${mode.displayName} - ${daylightKelvin}K, $intensity%, freq=$frequency');
+    _log(
+        'Sending: ${mode.displayName} - ${daylightKelvin}K, $intensity%, freq=$frequency');
     return sendData(DeviceCommands.effectMode(
       mode: mode,
       intensity: intensity,
