@@ -275,10 +275,13 @@ class BleService extends ChangeNotifier {
     }
   }
 
+  /// Check if the write characteristic is ready
+  bool get isWriteReady => _writeCharacteristic != null;
+
   /// Send data to device
   Future<bool> sendData(Uint8List data) async {
     if (_writeCharacteristic == null) {
-      // Only log once per second to avoid spam
+      _log('Error: Write characteristic not ready');
       return false;
     }
 
@@ -349,11 +352,16 @@ class BleService extends ChangeNotifier {
     required int daylightKelvin,
     required int intensity,
   }) async {
-    _log('Sending: White mode - ${daylightKelvin}K, $intensity%');
-    return sendData(DeviceCommands.whiteMode(
+    _log('=== WHITE MODE COMMAND ===');
+    _log('Expected from log: 20003a26a30d62fa01021032f811ffffff0504580d0a');
+    final packet = DeviceCommands.whiteMode(
       daylightKelvin: daylightKelvin,
       intensity: intensity,
-    ));
+    );
+    final hex = DeviceProtocol.bytesToHex(packet);
+    _log('Generated packet: $hex');
+    _log('Mode byte at [10]: 0x${packet[10].toRadixString(16).padLeft(2, '0')} (should be 0x10 for WHITE)');
+    return sendData(packet);
   }
 
   /// Send Effect mode command
@@ -363,14 +371,16 @@ class BleService extends ChangeNotifier {
     required int daylightKelvin,
     required int frequency,
   }) async {
-    _log(
-        'Sending: ${mode.displayName} - ${daylightKelvin}K, $intensity%, freq=$frequency');
-    return sendData(DeviceCommands.effectMode(
+    _log('Sending: EFFECT ${mode.displayName} (0x${mode.code.toRadixString(16)}) - ${daylightKelvin}K, $intensity%, freq=$frequency');
+    final packet = DeviceCommands.effectMode(
       mode: mode,
       intensity: intensity,
       daylightKelvin: daylightKelvin,
       frequency: frequency,
-    ));
+    );
+    // Log the mode byte position
+    _log('Mode byte: 0x${packet[10].toRadixString(16).padLeft(2, '0')}');
+    return sendData(packet);
   }
 
   /// Send BOTH fan and light on

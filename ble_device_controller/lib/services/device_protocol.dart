@@ -239,9 +239,63 @@ class DeviceProtocol {
     return percent.clamp(0, 100);
   }
 
-  /// Build light control packet for White mode and Effect modes
-  /// Format: [Header][a3][0d][62fa][enabled][type:02][mode][intensity][daylight_LE][ffffff][freq][ff][checksum][0d0a]
-  static Uint8List buildLightControlPacket({
+  /// Build WHITE mode control packet
+  /// Format: [Header][a3][0d][62fa][enabled][type:00][mode:ff][intensity][daylight_LE][ffffffff][checksum_3B][0d0a]
+  /// Based on btsnoop capture: 20003a26a30d62fa0100ff32800cffffffff08f4070d0a
+  static Uint8List buildWhiteModePacket({
+    required bool enabled,
+    required int intensity, // 0-100%
+    required int daylightKelvin, // 2700-6500K
+  }) {
+    int intensityVal = intensity.clamp(0, 100);
+    // Daylight value is Kelvin directly, stored as little-endian
+    int daylightVal = daylightKelvin.clamp(DAYLIGHT_MIN_K, DAYLIGHT_MAX_K);
+
+    // Build data portion (10 bytes before checksum)
+    List<int> data = [
+      enabled ? 0x01 : 0x00, // enabled
+      0x00, // type = 0x00 for WHITE mode
+      0xff, // mode = 0xFF for WHITE mode
+      intensityVal & 0xff, // intensity
+      daylightVal & 0xff, // daylight LOW byte first (little-endian)
+      (daylightVal >> 8) & 0xff, // daylight HIGH byte second
+      0xff, 0xff, 0xff, 0xff, // padding (4 bytes)
+    ];
+
+    // Calculate sum of data bytes
+    int sum = 0;
+    for (var b in data) {
+      sum += b;
+    }
+
+    // Calculate 3-byte checksum based on observed pattern:
+    // byte1 = (sum >> 8) + 0x03
+    // byte2 = (sum & 0xFF) + 0x3A (with carry to byte1)
+    // byte3 = 0x07
+    int sumLow = sum & 0xFF;
+    int sumHigh = sum >> 8;
+    int byte2Raw = sumLow + 0x3A;
+    int byte2 = byte2Raw & 0xFF;
+    int carry = byte2Raw >> 8;
+    int byte1 = (sumHigh + 0x03 + carry) & 0xFF;
+    int byte3 = 0x07;
+
+    return Uint8List.fromList([
+      ...HEADER,
+      CMD_CONTROL,
+      0x0d,
+      ...DEVICE_ID,
+      ...data,
+      byte1,
+      byte2,
+      byte3,
+      ...FOOTER,
+    ]);
+  }
+
+  /// Build EFFECT mode control packet
+  /// Format: [Header][a3][0d][62fa][enabled][type:02][mode][intensity][daylight_LE][ffffff][freq][checksum_2B][0d0a]
+  static Uint8List buildEffectModePacket({
     required bool enabled,
     required int mode,
     required int intensity, // 0-100%
@@ -255,7 +309,7 @@ class DeviceProtocol {
     // Build data portion
     List<int> data = [
       enabled ? 0x01 : 0x00, // enabled
-      0x02, // type (light control)
+      0x02, // type = 0x02 for EFFECT mode
       mode & 0xff, // mode
       intensityVal & 0xff, // intensity
       daylightVal & 0xff, // daylight LOW byte first (little-endian)
@@ -264,7 +318,7 @@ class DeviceProtocol {
       freqVal & 0xff, // frequency
     ];
 
-    // Calculate checksum
+    // Calculate checksum (2 bytes)
     int checksum = 0x08;
     for (var b in data) {
       checksum += b;
@@ -396,25 +450,26 @@ class DeviceCommands {
       );
 
   /// White mode control with daylight and intensity
+  /// Uses type=0x00, mode=0xFF format from btsnoop capture
   static Uint8List whiteMode({
     required int daylightKelvin,
     required int intensity,
   }) =>
-      DeviceProtocol.buildLightControlPacket(
+      DeviceProtocol.buildWhiteModePacket(
         enabled: true,
-        mode: DeviceProtocol.LIGHT_MODE_WHITE,
         intensity: intensity,
         daylightKelvin: daylightKelvin,
       );
 
   /// Effect mode control with all parameters
+  /// Uses type=0x02, mode=effect_code format
   static Uint8List effectMode({
     required LightMode mode,
     required int intensity,
     required int daylightKelvin,
     required int frequency,
   }) =>
-      DeviceProtocol.buildLightControlPacket(
+      DeviceProtocol.buildEffectModePacket(
         enabled: true,
         mode: mode.code,
         intensity: intensity,
@@ -422,10 +477,9 @@ class DeviceCommands {
         frequency: frequency,
       );
 
-  /// Turn light off
-  static Uint8List lightOff2() => DeviceProtocol.buildLightControlPacket(
+  /// Turn light off (white mode off)
+  static Uint8List lightOff2() => DeviceProtocol.buildWhiteModePacket(
         enabled: false,
-        mode: DeviceProtocol.LIGHT_MODE_WHITE,
         intensity: 0,
         daylightKelvin: 4600,
       );

@@ -24,27 +24,64 @@ class _ControlScreenState extends State<ControlScreen>
   double _effectIntensity = 50;
   double _effectFrequency = 5;
 
+  // Track if initial mode command was sent
+  bool _initialModeSent = false;
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_onTabChanged);
 
-    // Send initial White mode command after widget is built
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final bleService = context.read<BleService>();
-      _sendWhiteMode(bleService);
-    });
+    // Send initial mode command with delay to ensure BLE services are ready
+    _sendInitialModeWithRetry();
+  }
+
+  /// Send initial mode command with retry to handle BLE timing issues
+  Future<void> _sendInitialModeWithRetry() async {
+    // Get bleService before any async operation
+    final bleService = context.read<BleService>();
+
+    // Wait for BLE services to be fully discovered
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    if (!mounted) return;
+
+    // Retry up to 3 times with increasing delays
+    for (int attempt = 0; attempt < 3; attempt++) {
+      if (!mounted || _initialModeSent) return;
+
+      // Check both connection and write characteristic readiness
+      if (bleService.isConnected && bleService.isWriteReady) {
+        bool success = await _sendCurrentTabMode(bleService);
+        if (success) {
+          _initialModeSent = true;
+          return;
+        }
+      }
+
+      // Wait before retry
+      await Future.delayed(Duration(milliseconds: 300 * (attempt + 1)));
+    }
+  }
+
+  /// Send the mode command for the current tab
+  Future<bool> _sendCurrentTabMode(BleService bleService) async {
+    debugPrint('>>> _sendCurrentTabMode: tab index = ${_tabController.index}');
+    if (_tabController.index == 0) {
+      debugPrint('>>> Sending WHITE mode');
+      return _sendWhiteModeAsync(bleService);
+    } else {
+      debugPrint('>>> Sending EFFECT mode: ${_selectedEffect.displayName}');
+      return _sendEffectModeAsync(bleService);
+    }
   }
 
   void _onTabChanged() {
     if (!_tabController.indexIsChanging) {
       final bleService = context.read<BleService>();
-      if (_tabController.index == 0) {
-        _sendWhiteMode(bleService);
-      } else {
-        _sendEffectMode(bleService);
-      }
+      // Always send mode command when tab changes
+      _sendCurrentTabMode(bleService);
     }
   }
 
@@ -55,20 +92,32 @@ class _ControlScreenState extends State<ControlScreen>
     super.dispose();
   }
 
-  void _sendWhiteMode(BleService bleService) {
-    bleService.sendWhiteMode(
+  /// Send white mode command (async version with return value)
+  Future<bool> _sendWhiteModeAsync(BleService bleService) {
+    return bleService.sendWhiteMode(
       daylightKelvin: _whiteDaylight.round(),
       intensity: _whiteIntensity.round(),
     );
   }
 
-  void _sendEffectMode(BleService bleService) {
-    bleService.sendEffectMode(
+  /// Send effect mode command (async version with return value)
+  Future<bool> _sendEffectModeAsync(BleService bleService) {
+    return bleService.sendEffectMode(
       mode: _selectedEffect,
       intensity: _effectIntensity.round(),
       daylightKelvin: _effectDaylight.round(),
       frequency: _effectFrequency.round(),
     );
+  }
+
+  /// Send white mode command (sync wrapper for UI callbacks)
+  void _sendWhiteMode(BleService bleService) {
+    _sendWhiteModeAsync(bleService);
+  }
+
+  /// Send effect mode command (sync wrapper for UI callbacks)
+  void _sendEffectMode(BleService bleService) {
+    _sendEffectModeAsync(bleService);
   }
 
   @override
@@ -94,8 +143,9 @@ class _ControlScreenState extends State<ControlScreen>
               IconButton(
                 icon: const Icon(Icons.bluetooth_disabled),
                 onPressed: () async {
+                  final navigator = Navigator.of(context);
                   await bleService.disconnect();
-                  if (mounted) Navigator.of(context).pop();
+                  if (mounted) navigator.pop();
                 },
                 tooltip: 'Disconnect',
               ),
@@ -184,7 +234,7 @@ class _ControlScreenState extends State<ControlScreen>
                       activeTrackColor: Colors.orange,
                       inactiveTrackColor: Colors.blue.shade100,
                       thumbColor: Colors.white,
-                      overlayColor: Colors.orange.withOpacity(0.2),
+                      overlayColor: Colors.orange.withValues(alpha: 0.2),
                     ),
                     child: Slider(
                       value: _whiteDaylight,
